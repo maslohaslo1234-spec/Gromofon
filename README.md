@@ -77,7 +77,7 @@ I already have:
 - Basic soldering and measurement equipment.
 - Access to a 3D printer.
 
-A preliminary parts cart has been prepared. Quantities and component choices are being reviewed before ordering.
+A preliminary parts cart has been prepared.
 
 <img width="861" height="752" alt="cart1" src="https://github.com/user-attachments/assets/66158476-3133-4b34-bdd0-fb125d7f435e" />
 
