@@ -42,7 +42,7 @@ I drafted a circuit containing:
 - A pull-down resistor on the PWM input.
 - An RCD clamp intended to limit voltage spikes from the transformer.
 
-![Zrzut ekranu 2026-10-22 180656](https://halflife.hackclub-assets.com/hackclub-half-life/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/31f88ad37a41fb97d61e48512709e33d9d7ad015f33b683d355af212aea900f3.png)
+![schematic](https://halflife.hackclub-assets.com/hackclub-half-life/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/31f88ad37a41fb97d61e48512709e33d9d7ad015f33b683d355af212aea900f3.png)
 
 During the schematic review, I identified further changes, including adding a gate-to-source pull-down resistor and improving the regulator’s local decoupling. The clamp component values are still provisional because the transformer has not been selected.
 
@@ -54,9 +54,9 @@ I checked my available parts and found an L7812CV regulator. I also have screw t
 
 I assembled a preliminary parts cart and compared prices and alternatives. This helped me spot unnecessary quantities and a resistor value that did not match the schematic. I also looked for more suitable capacitors for decoupling and the RCD clamp.
 
-![Zrzut ekranu 2026-10-22 180935](https://halflife.hackclub-assets.com/hackclub-half-life/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/4816363fad93dba0e234959c88e17028d2d4320ccd42a0cdf343ac66f0f70811.png)
+![cart1](https://halflife.hackclub-assets.com/hackclub-half-life/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/4816363fad93dba0e234959c88e17028d2d4320ccd42a0cdf343ac66f0f70811.png)
 
-![image](https://halflife.hackclub-assets.com/hackclub-half-life/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/45152fc19a6b460927a614a827af6d665f74174ba92d337ed1a0be2692eec31e.png)
+![cart2](https://halflife.hackclub-assets.com/hackclub-half-life/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/45152fc19a6b460927a614a827af6d665f74174ba92d337ed1a0be2692eec31e.png)
 
 ### Main unresolved issue
 
