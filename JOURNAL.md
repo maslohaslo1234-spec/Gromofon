@@ -10,7 +10,7 @@
 
 | Week | Tier | Hours logged | Entries |
 | --- | --- | --- | --- |
-| Week 3 | Tier 1 | 11.93h | 2 |
+| Week 3 | Tier 1 | 15.93h | 2 |
 
 ## Contents
 
@@ -85,7 +85,7 @@ This research helped me refine the circuit concept and identify which specificat
 
 ### 2026-10-24 – # Entry 2: firmware, BOM and README
 
-**4h**
+**8h**
 
 # Entry 2: firmware, BOM and README
 
