@@ -26,7 +26,7 @@ I’m interested in high-voltage electronics and wanted to use that interest to 
    The ESP32 generates a high-frequency switching signal (25 kHz by default) and varies its duty cycle to modulate the power delivered to the arc. The switching frequency and the maximum pulse duration must be matched to the transformer.
 
 3. **Gate driver and MOSFET**  
-   A TC4420 gate driver, powered from 12 V, converts the ESP32’s logic signal into a suitable gate-drive signal for the power MOSFET. The current design shares a common ground between the ESP32 and the power stage, so there is no galvanic isolation.
+   A TC4420 gate driver, powered from 12 V, converts the ESP32’s logic signal into a suitable gate-drive signal for the power MOSFET. 
 
 4. **High-voltage transformer**  
    The MOSFET switches the primary winding of a flyback transformer, which produces the voltage needed to sustain an arc between two electrodes.
@@ -36,7 +36,7 @@ I’m interested in high-voltage electronics and wanted to use that interest to 
 
 ## Current circuit design
 
-<img width="1317" height="871" alt="schematic" src="https://github.com/user-attachments/assets/d7e94368-4780-43d0-abf4-5d1495f97c87" />
+<img width="973" height="641" alt="image" src="https://github.com/user-attachments/assets/9a176831-f81c-4492-8e51-e7cf1aa6253e" />
 
 The schematic currently includes:
 
@@ -45,13 +45,19 @@ The schematic currently includes:
 - An L7812CV regulator supplying 12 V to the gate driver.
 - A TC4420 gate driver.
 - An IRFP260N as the proposed power MOSFET.
-- A gate resistor and an input pull-down resistor.
+- A gate resistor, a PWM input pull-down and a gate-to-source pull-down.
+- A fuse in the 24 V input; its rating has not been selected yet.
 - An RCD clamp intended to limit drain-voltage spikes.
 
-
-The transformer has not been selected. The RCD clamp values, operating frequency, maximum pulse duration and power level are therefore not finalized.
+The transformer has not been selected. The RCD clamp values, operating frequency, maximum pulse duration and power level are therefore not finalized. 
 
 The prototype is planned for perfboard assembly, with short gate-drive connections and the high-voltage wiring kept separate from the control electronics.
+
+### Transformer selection
+
+Finding a suitable transformer has been the main unresolved part of the design. Many inexpensive listings do not provide enough information about the windings, operating conditions or output capability to confirm whether they will work with my driver.
+
+I am currently looking for a suitable transformer through local second-hand listings and electronics sellers. If I cannot find one, I will consider an inexpensive flyback transformer from AliExpress, although its specifications may be poorly documented. Another option is to investigate winding my own transformer, but I have not yet confirmed whether that is practical within the project schedule. Either option will require testing before I can choose the final operating settings.
 
 ## Firmware
 
@@ -60,9 +66,9 @@ The ESP32 firmware is in [`firmware/gromofon_v03`](firmware/gromofon_v03) (see i
 - Bluetooth A2DP audio input, a 440 Hz test tone and a constant-duty test mode.
 - Output disabled at startup, an explicit arm command and a one-second soft start.
 - A duty cap and a pulse-duration limit. The pulse-duration limit is deliberately left at zero until the transformer has been measured, so the output stays blocked on a normal build.
-- Automatic disarming when the firmware detects Bluetooth source changes, missing audio, buffer faults or a missed control deadline, plus a task watchdog. 
+- Automatic disarming when the firmware detects Bluetooth source changes, missing audio, buffer faults or a missed control deadline, plus a task watchdog. These checks do not guarantee immediate shutdown if the control task stalls.
 
-Both the default and bench configurations compiled successfully with Arduino-ESP32 3.3.8 and ESP32-A2DP 1.8.11. The firmware has not been tested.
+Both the default and bench configurations compiled successfully with Arduino-ESP32 3.3.8 and ESP32-A2DP 1.8.11.
 
 The normal build has bench mode disabled. Bench mode uses a 3 microsecond pulse limit only for inspecting the GPIO signal with the power stage disconnected; it is not a validated transformer setting.
 
@@ -71,32 +77,25 @@ The normal build has bench mode disabled. Bench mode uses a 3 microsecond pulse 
 - Stored melodies.
 - An optional 3.5 mm audio input.
 - A 3D-printed enclosure and mounting parts.
-- hardware current limiting for a future revision.
+- Hardware current limiting for a future revision.
 
 ## Parts and budget
 
-The target parts budget is approximately **US$65**, including a transformer that still needs to be selected.
+The requested programme funding is 30 USD. This is the funding request, not a cap on the total project cost. I will pay costs above the grant from my own money.
 
 I already have:
 - A classic ESP32 DevKit (30-pin).
 - A 24 V power supply recovered from a photocopier.
 - An L7812CV regulator.
 - Screw terminals.
+- Perfboard and wire for the low-voltage assembly.
+- A heatsink
 - Basic soldering and measurement equipment.
 - Access to a 3D printer.
 
-The preliminary parts order, priced at about 3.90 PLN per US dollar (shop prices include VAT, shipping not included):
+The current parts list is in [BOM.csv](BOM.csv). Prices were converted at approximately 3.90 PLN per US dollar and include shop VAT
 
-<img width="880" height="691" alt="image" src="https://github.com/user-attachments/assets/78dec58a-442e-4881-b31f-d841f7a63091" />
-
-
-Quantities above are purchase quantities, including pack sizes and spares, rather than the number required for one device.
-
-The 330 Ω resistors are still a provisional shopping-list item and are not a confirmed replacement for the RCD clamp resistor. The final clamp resistor and any additional parts needed for the schematic corrections are not yet included.
-
-This does not yet include the flyback transformer, a heatsink, perfboard, wire and shipping.
-
-
+<img width="872" height="877" alt="image" src="https://github.com/user-attachments/assets/a5554fcc-130a-4481-be27-c295c893585c" />
 
 ## Inspiration and references
 
@@ -110,15 +109,13 @@ Seeing an electric arc play music made me want to try it myself. My version will
 
 ### Plasma speaker article
 
-This article provides another reference for PWM modulation, gate driving, flyback transformers and RCD clamps. Its discussion of transformer failure is particularly useful for planning the prototype.
+This article provides another reference for PWM modulation, gate driving, flyback transformers and RCD clamps.
 
 [Read the article](https://conrad-gst.github.io/articles/highVoltage/plasmaSpeakerPWM.html)
 
 ## Next steps
 
 - Select a suitable flyback transformer.
-- Complete the schematic review.
-- Finalize the BOM and calculate the total cost.
 - Plan the perfboard layout.
 - Test the firmware on the bench with the power stage disconnected.
 - Test the low-voltage control section before connecting the HV stage.
@@ -128,6 +125,8 @@ This article provides another reference for PWM modulation, gate driving, flybac
 ## Repository contents
 
 - `README.md` — this file.
+- `BOM.csv` — parts list with approximate prices.
+- `JOURNAL.md` - development journal synchronized from Half Life.
 - `gromofon.kicad_sch` — KiCad schematic.
 - `firmware/` — ESP32 firmware and its README.
 
