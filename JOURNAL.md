@@ -114,3 +114,29 @@ Finally, I prepared a firmware README with the build versions, serial commands, 
 ![image](https://halflife.hackclub-assets.com/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/19d34f73254cff08b0401d1105a0ce65563ae03655796bbdc561b57499883248.png)
 
 Next I need to select the transformer, finish the schematic corrections and make the BOM match it. After that I can plan the perfboard layout and test the GPIO output with the power stage disconnected before building the high-voltage section in week 8.
+
+## Further revisions — 3 hours
+
+I spent another three hours refining the schematic, BOM and README, and checking that the project files agreed with each other.
+
+On the schematic, I worked on the gate-to-source pull-down, and the component labels. I also reviewed the placement of the existing decoupling capacitors around the regulator and gate driver. The RCD clamp values are still provisional because the transformer has not been selected.
+
+![image](https://halflife.hackclub-assets.com/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/32b6471b2ea7cae7b7a7a60097bcb3e6e107aff9c63033a0818bdd5dc4ad94fd.png)
+
+I checked the BOM against the schematic, identified the missing 22 kΩ resistor and compared gate-driver prices.  I kept five MOSFETs, including spares, and clarified that I already have perfboard, low-voltage wire and a heatsink.
+
+![image](https://halflife.hackclub-assets.com/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/63ca03d2553b63c8eb8997fe8c48aa69753759186a24a596ea57b9c9e522a493.png)
+
+I updated the main README to reflect the $30 funding request and explain that I will cover additional costs myself. I also expanded the explanation of the transformer search. I am looking through local listings first, with an inexpensive AliExpress transformer or winding my own as possible alternatives that still need investigation. I reviewed the repository for outdated descriptions and differences between the documentation and parts list.
+
+![image](https://halflife.hackclub-assets.com/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/af64de47324432a8657293c632b46b05397855c4324617d580d0af8a111594f0.png)
+
+## Ending reel — 1 hour
+
+I spent one hour making the Week 3 ending reel. I selected screen recordings showing the schematic work, research, firmware, parts list and transformer search, then edited them in CapCut.
+
+I added short English headings, a consistent visual style and background music. The final video is about 34 seconds long and exported vertically at 1080 × 1920. It shows the design progress so far and the next steps: choosing the transformer, building the circuit and testing it.
+
+![image](https://halflife.hackclub-assets.com/sessions/D1H5wjMaoqfsZfeTslugwWB4nIQcEzNR/6f524615b42afcd03c54540fcca31be403e74da2e5b3a8576b60272ff11f94e1.png)
+
+The next steps are to select the transformer, finish the remaining component choices and plan the perfboard layout
